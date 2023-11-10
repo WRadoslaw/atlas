@@ -109,7 +109,7 @@ export const YppDashboardMainTab: FC = () => {
           <WidgetTile
             title="Next payments round"
             tooltip={{
-              text: 'All of the payments are processed every Friday. The hour of payouts may vary.',
+              text: 'All of the payments are processed every Tuesday. The hour of payouts may vary.',
               placement: 'top-start',
             }}
             customNode={
