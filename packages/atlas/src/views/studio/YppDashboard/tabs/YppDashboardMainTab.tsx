@@ -13,7 +13,6 @@ import { Button, TextButton } from '@/components/_buttons/Button'
 import { BenefitCard } from '@/components/_ypp/BenefitCard'
 import { ReferralLinkButton } from '@/components/_ypp/ReferralLinkButton'
 import { ServiceStatusWidget } from '@/components/_ypp/ServiceStatusWidget/ServiceStatusWidget'
-import { YppDashboardTier } from '@/components/_ypp/YppDashboardTier'
 import { atlasConfig } from '@/config'
 import { absoluteRoutes } from '@/config/routes'
 import { useMediaMatch } from '@/hooks/useMediaMatch'
@@ -98,9 +97,9 @@ export const YppDashboardMainTab: FC = () => {
             actionButton={{ text: 'Add new channel', onClick: handleYppSignUpClick }}
           />
         </GridItem>
-        <GridItem colSpan={{ xxs: 12, md: 4 }}>
-          <YppDashboardTier onSignUp={handleYppSignUpClick} status={currentChannel?.yppStatus} />
-        </GridItem>
+        {/*<GridItem colSpan={{ xxs: 12, md: 4 }}>*/}
+        {/*  <YppDashboardTier onSignUp={handleYppSignUpClick} status={currentChannel?.yppStatus} />*/}
+        {/*</GridItem>*/}
 
         <GridItem colSpan={{ xxs: 12, md: 8 }}>
           <ServiceStatusWidget status={currentChannel?.yppStatus} syncStatus={currentChannel?.syncStatus} />
