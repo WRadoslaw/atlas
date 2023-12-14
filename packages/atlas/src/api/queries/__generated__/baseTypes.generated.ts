@@ -5100,7 +5100,7 @@ export type Mutation = {
   setVideoViewPerUserTimeLimit: VideoViewPerUserTimeLimit
   setVideoWeights: VideoWeights
   signAppActionCommitment: GeneratedSignature
-  suspendChannels: Array<SuspendChannelResult>
+  suspendChannel: SuspendChannelResult
   unfollowChannel: ChannelUnfollowResult
   verifyChannel: VerifyChannelResult
 }
@@ -5242,8 +5242,8 @@ export type MutationSignAppActionCommitmentArgs = {
   rawAction: Scalars['String']
 }
 
-export type MutationSuspendChannelsArgs = {
-  channelIds: Array<Scalars['String']>
+export type MutationSuspendChannelArgs = {
+  channelId: Scalars['String']
 }
 
 export type MutationUnfollowChannelArgs = {
@@ -5251,7 +5251,7 @@ export type MutationUnfollowChannelArgs = {
 }
 
 export type MutationVerifyChannelArgs = {
-  channelIds: Array<Scalars['String']>
+  channelId: Scalars['String']
 }
 
 export type NewAuction = {

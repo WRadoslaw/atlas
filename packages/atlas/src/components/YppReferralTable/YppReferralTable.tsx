@@ -64,16 +64,18 @@ const RegDate = ({ date }: { date: Date }) => {
   )
 }
 
-const Channel = ({ channel: channelId }: { channel: YppReferral['channel'] }) => {
-  const { channel, loading } = useBasicChannel(channelId, {
+const Channel = ({ channel }: { channel: YppReferral['channel'] }) => {
+  const { extendedChannel, loading } = useBasicChannel(channel, {
     onError: (error) => SentryLogger.error('Failed to fetch memberships', 'ActiveUserProvider', error),
   })
 
   return (
-    <StyledLink to={absoluteRoutes.viewer.channel(channel?.id)}>
+    <StyledLink to={absoluteRoutes.viewer.channel(extendedChannel?.channel.id)}>
       <SenderItem
-        nodeStart={<Avatar assetUrls={channel?.avatarPhoto?.resolvedUrls} size={32} loading={loading} />}
-        label={channel?.title}
+        nodeStart={
+          <Avatar assetUrls={extendedChannel?.channel.avatarPhoto?.resolvedUrls} size={32} loading={loading} />
+        }
+        label={extendedChannel?.channel.title}
         isInteractive={false}
       />
     </StyledLink>
