@@ -139,7 +139,7 @@ export const YppAuthorizationModal: FC<YppAuthorizationModalProps> = ({ unSynced
     },
   })
 
-  const { channel } = useBasicChannel(referrerId || '', {
+  const { extendedChannel } = useBasicChannel(referrerId || '', {
     skip: !referrerId,
   })
   const {
@@ -150,6 +150,8 @@ export const YppAuthorizationModal: FC<YppAuthorizationModalProps> = ({ unSynced
     trackClickAuthModalSignUpButton,
     trackClickAuthModalSignInButton,
   } = useSegmentAnalytics()
+
+  const channel = extendedChannel?.channel
 
   const { displaySnackbar } = useSnackbar()
 

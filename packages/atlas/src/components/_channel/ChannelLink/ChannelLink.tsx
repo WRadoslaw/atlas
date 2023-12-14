@@ -47,14 +47,17 @@ export const ChannelLink: FC<ChannelLinkProps> = ({
   customTitle,
   followButton = false,
 }) => {
-  const { channel } = useBasicChannel(id || '', {
+  const { extendedChannel } = useBasicChannel(id || '', {
     skip: !id,
     onCompleted: (data) => !data && onNotFound?.(),
     onError: (error) => SentryLogger.error('Failed to fetch channel', 'ChannelLink', error, { channel: { id } }),
   })
-  const { toggleFollowing, isFollowing } = useHandleFollowChannel(channel?.id, channel?.title)
+  const { toggleFollowing, isFollowing } = useHandleFollowChannel(
+    extendedChannel?.channel.id,
+    extendedChannel?.channel?.title
+  )
 
-  const displayedChannel = overrideChannel ? overrideChannel : channel
+  const displayedChannel = overrideChannel ? { channel: overrideChannel } : extendedChannel
 
   const handleFollowButtonClick = (e: MouseEvent) => {
     e.preventDefault()
@@ -70,7 +73,7 @@ export const ChannelLink: FC<ChannelLinkProps> = ({
             withHandle={!hideHandle}
             loading={!displayedChannel}
             size={avatarSize}
-            assetUrls={displayedChannel?.avatarPhoto?.resolvedUrls}
+            assetUrls={displayedChannel?.channel.avatarPhoto?.resolvedUrls}
           />
         </StyledLink>
       )}
@@ -89,11 +92,12 @@ export const ChannelLink: FC<ChannelLinkProps> = ({
                     as="span"
                     color={textSecondary ? 'colorCoreNeutral200' : undefined}
                   >
-                    {customTitle || displayedChannel.title}
+                    {customTitle || displayedChannel.channel.title}
                   </ChannelTitle>
                   {followButton && (
                     <Text as="p" variant="t100" color="colorText" margin={{ top: 1 }}>
-                      {displayedChannel.followsNum} {displayedChannel.followsNum === 1 ? 'follower' : 'followers'}
+                      {displayedChannel.channel.followsNum}{' '}
+                      {displayedChannel.channel.followsNum === 1 ? 'follower' : 'followers'}
                     </Text>
                   )}
                 </StyledLink>
@@ -101,7 +105,7 @@ export const ChannelLink: FC<ChannelLinkProps> = ({
                   <FollowButtonWrapper>
                     <ProtectedActionWrapper
                       title="You want to follow this channel?"
-                      description={`Sign in to follow ${displayedChannel.title}`}
+                      description={`Sign in to follow ${displayedChannel.channel.title}`}
                     >
                       <Button variant="secondary" onClick={handleFollowButtonClick}>
                         {isFollowing ? 'Unfollow' : 'Follow'}
