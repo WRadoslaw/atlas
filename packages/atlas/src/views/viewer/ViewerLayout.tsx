@@ -28,7 +28,7 @@ const MemberNotificationsView = lazy(() =>
 )
 const CategoryView = lazy(() => import('./CategoryView').then((module) => ({ default: module.CategoryView })))
 const ChannelView = lazy(() => import('./ChannelView').then((module) => ({ default: module.ChannelView })))
-const ChannelsView = lazy(() => import('./ChannelsView').then((module) => ({ default: module.ChannelsView })))
+// const ChannelsView = lazy(() => import('./ChannelsView').then((module) => ({ default: module.ChannelsView })))
 const HomeView = lazy(() => import('./HomeView').then((module) => ({ default: module.HomeView })))
 const MarketplaceView = lazy(() => import('./MarketplaceView').then((module) => ({ default: module.MarketplaceView })))
 const MemberView = lazy(() => import('./MemberView').then((module) => ({ default: module.MemberView })))
@@ -46,7 +46,7 @@ const viewerRoutes = [
   { path: relativeRoutes.viewer.search(), element: <SearchView /> },
   { path: relativeRoutes.viewer.index(), element: <HomeView /> },
   { path: relativeRoutes.viewer.video(), element: <VideoView /> },
-  { path: relativeRoutes.viewer.channels(), element: <ChannelsView /> },
+  // { path: relativeRoutes.viewer.channels(), element: <ChannelsView /> },
   { path: relativeRoutes.viewer.channel(), element: <ChannelView /> },
   { path: relativeRoutes.viewer.category(), element: <CategoryView /> },
   { path: relativeRoutes.viewer.memberById(), element: <MemberView /> },
