@@ -1,5 +1,4 @@
 import { RefObject, useEffect, useRef, useState } from 'react'
-import { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js'
 import videojs from 'video.js/dist/alt/video.core.novtt'
 
 import { useGetAssetUrl } from '@/hooks/useGetAssetUrl'
@@ -21,6 +20,7 @@ export type VideoJsConfig = {
   onTimeUpdated?: (time: number) => void
 }
 
+export type VideoJsPlayer = videojs.Player
 type VideoJsPlayerHook = (config: VideoJsConfig) => [VideoJsPlayer | null, RefObject<HTMLVideoElement>]
 export const useVideoJsPlayer: VideoJsPlayerHook = ({
   fill,
@@ -40,13 +40,12 @@ export const useVideoJsPlayer: VideoJsPlayerHook = ({
 }) => {
   const playerRef = useRef<HTMLVideoElement | null>(null)
   const [player, setPlayer] = useState<VideoJsPlayer | null>(null)
-  const { url: src } = useGetAssetUrl(videoUrls, 'video')
   const { url: posterUrl } = useGetAssetUrl(posterUrls, 'cover')
   useEffect(() => {
     if (!playerRef.current) {
       return
     }
-    const videoJsOptions: VideoJsPlayerOptions = {
+    const videoJsOptions: videojs.PlayerOptions = {
       controls: true,
       playsinline: true,
       bigPlayButton: false,
@@ -55,7 +54,6 @@ export const useVideoJsPlayer: VideoJsPlayerHook = ({
     }
 
     const playerInstance = videojs(playerRef.current as Element, videoJsOptions)
-
     setPlayer(playerInstance)
 
     return () => {
@@ -70,14 +68,17 @@ export const useVideoJsPlayer: VideoJsPlayerHook = ({
   }, [])
 
   useEffect(() => {
-    if (!player || !src) {
+    if (!player || !videoUrls) {
       return
     }
-    player.src({
-      src: src,
-      type: 'video/mp4',
-    })
-  }, [player, src])
+
+    player.src(
+      videoUrls.map((url) => ({
+        src: url,
+        type: 'video/mp4',
+      }))
+    )
+  }, [player, videoUrls])
 
   useEffect(() => {
     if (!player || !width) {

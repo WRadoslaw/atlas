@@ -12,7 +12,6 @@ import {
   useState,
 } from 'react'
 import useResizeObserver from 'use-resize-observer'
-import { VideoJsPlayer } from 'video.js'
 
 import { useFullVideo } from '@/api/hooks/video'
 import { FullVideoFieldsFragment } from '@/api/queries/__generated__/fragments.generated'
@@ -69,7 +68,7 @@ import {
 } from './VideoPlayer.styles'
 import { VideoShare } from './VideoShare'
 import { CustomVideojsEvents, PlayerState, VOLUME_STEP, hotkeysHandler, isFullScreenEnabled } from './utils'
-import { VideoJsConfig, useVideoJsPlayer } from './videoJsPlayer'
+import { VideoJsConfig, VideoJsPlayer, useVideoJsPlayer } from './videoJsPlayer'
 
 export type VideoPlayerProps = {
   channelAvatarUrls?: string[] | null
@@ -781,6 +780,7 @@ const VideoPlayerComponent: ForwardRefRenderFunction<HTMLVideoElement, VideoPlay
           }
         }}
       >
+        <video style={videoStyle} ref={playerRef} className="video-js" onClick={onVideoClick} />
         {needsManualPlay && (
           <BigPlayButtonContainer
             onClick={() => {
@@ -792,7 +792,6 @@ const VideoPlayerComponent: ForwardRefRenderFunction<HTMLVideoElement, VideoPlay
             </BigPlayButton>
           </BigPlayButtonContainer>
         )}
-        <video style={videoStyle} ref={playerRef} className="video-js" onClick={onVideoClick} />
         {showPlayerControls && (
           <>
             <ControlsOverlay isSettingsPopoverOpened={isSettingsPopoverOpened} elevated={isFullScreen}>
