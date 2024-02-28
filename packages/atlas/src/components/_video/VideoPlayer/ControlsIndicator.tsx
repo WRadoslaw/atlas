@@ -1,6 +1,5 @@
 import { FC, ReactNode, useEffect, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { VideoJsPlayer } from 'video.js'
 
 import {
   SvgActionSettings,
@@ -28,6 +27,7 @@ import {
   StyledLoader,
 } from './ControlsIndicator.styles'
 import { CustomVideojsEvents } from './utils'
+import { VideoJsPlayer } from './videoJsPlayer'
 
 type VideoEvent = CustomVideojsEvents | null
 

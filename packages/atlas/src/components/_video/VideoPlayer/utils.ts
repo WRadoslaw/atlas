@@ -1,6 +1,6 @@
-import { VideoJsPlayer } from 'video.js'
-
 import { isIphone } from '@/utils/browser'
+
+import { VideoJsPlayer } from './videoJsPlayer'
 
 export type PlayerState = 'loading' | 'ended' | 'error' | 'playingOrPaused' | 'pending'
 

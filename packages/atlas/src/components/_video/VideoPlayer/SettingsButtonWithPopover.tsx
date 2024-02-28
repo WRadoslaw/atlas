@@ -1,6 +1,5 @@
 import { Boundary } from '@popperjs/core'
 import { FC, MouseEvent, useRef, useState } from 'react'
-import { VideoJsPlayer } from 'video.js'
 
 import { Popover, PopoverImperativeHandle } from '@/components/_overlays/Popover'
 import { CustomVideojsEvents } from '@/components/_video/VideoPlayer/utils'
@@ -11,6 +10,7 @@ import { isMobile } from '@/utils/browser'
 
 import { PlayerControlButton } from './PlayerControlButton'
 import { StyledSvgControlsSettingsOutline, StyledSvgControlsSettingsSolid } from './VideoPlayer.styles'
+import { VideoJsPlayer } from './videoJsPlayer'
 
 import { MobileSettings, Setting, Settings } from '../Settings'
 

@@ -1,6 +1,5 @@
 import { clamp, round } from 'lodash-es'
 import { Dispatch, FC, MouseEvent, SetStateAction, TouchEvent, useEffect, useRef, useState } from 'react'
-import { VideoJsPlayer } from 'video.js'
 
 import { arrayFrom } from '@/utils/data'
 import { formatDurationShort } from '@/utils/time'
@@ -18,6 +17,7 @@ import {
   StyledTooltipText,
 } from './CustomTimeline.styles'
 import { PlayerState } from './utils'
+import { VideoJsPlayer } from './videoJsPlayer'
 
 type CustomTimelineProps = {
   player?: VideoJsPlayer | null

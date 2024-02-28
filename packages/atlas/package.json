@@ -100,7 +100,7 @@
     "twemoji": "^14.0.2",
     "use-draggable-scroll": "^0.1.0",
     "use-resize-observer": "^9.1.0",
-    "video.js": "^7.21.1",
+    "video.js": "8.10.0",
     "zod": "^3.20.2",
     "zustand": "^3.7.2"
   },
