@@ -25,7 +25,7 @@ import { useSnackbar } from '@/providers/snackbars'
 import { useUser } from '@/providers/user/user.hooks'
 import { useYppStore } from '@/providers/ypp/ypp.store'
 import { createId } from '@/utils/createId'
-import { imageUrlToBlob } from '@/utils/image'
+import { convertImageToType, imageUrlToBlob } from '@/utils/image'
 import { SentryLogger } from '@/utils/logs'
 
 import {
@@ -220,15 +220,27 @@ export const YppAuthorizationModal: FC<YppAuthorizationModalProps> = ({ unSynced
 
     try {
       const avatarBlob = ytResponseData?.avatarUrl
-        ? (await imageUrlToBlob(ytResponseData?.avatarUrl).catch((err) =>
-            SentryLogger.error('Failed to process YT avatar image', 'handleCreateOrUpdateChannel', err)
-          )) ?? null
+        ? (await imageUrlToBlob(ytResponseData?.avatarUrl)
+            .then((cleanBlob) =>
+              convertImageToType('image/webp', cleanBlob)
+                .then(([, blob]) => blob)
+                .catch(() => cleanBlob)
+            )
+            .catch((err) =>
+              SentryLogger.error('Failed to process YT avatar image', 'handleCreateOrUpdateChannel', err)
+            )) ?? null
         : null
 
       const coverBlob = ytResponseData?.bannerUrl
-        ? (await imageUrlToBlob(ytResponseData?.bannerUrl, 1920, 480).catch((err) =>
-            SentryLogger.error('Failed to process YT banner image', 'handleCreateOrUpdateChannel', err)
-          )) ?? null
+        ? (await imageUrlToBlob(ytResponseData?.bannerUrl, 1920, 480)
+            .then((cleanBlob) =>
+              convertImageToType('image/webp', cleanBlob)
+                .then(([, blob]) => blob)
+                .catch(() => cleanBlob)
+            )
+            .catch((err) =>
+              SentryLogger.error('Failed to process YT banner image', 'handleCreateOrUpdateChannel', err)
+            )) ?? null
         : null
 
       const avatarContentId = `local-avatar-${createId()}`

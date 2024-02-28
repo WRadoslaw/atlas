@@ -57,7 +57,43 @@ const resizeImage = (image: HTMLImageElement, targetWidth: number, targetHeight:
   return canvas
 }
 
-export const imageUrlToBlob = async (imageUrl: string, width = 192, height = 192): Promise<Blob> => {
+type ImageTypes = 'image/webp' | 'image/jpeg'
+
+export async function convertImageToType(
+  type: ImageTypes,
+  src: string | Blob,
+  quality: number = 0.92
+): Promise<[string, Blob]> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.crossOrigin = 'Anonymous' // Use this if the image is served from a different domain
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.width
+      canvas.height = img.height
+
+      const ctx = canvas.getContext('2d')
+      ctx!.drawImage(img, 0, 0)
+
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const imgUrl = URL.createObjectURL(blob)
+            resolve([imgUrl, blob])
+          } else {
+            reject(new Error('Canvas to Blob conversion failed'))
+          }
+        },
+        type,
+        quality
+      )
+    }
+    img.onerror = (err) => reject(err)
+    img.src = typeof src === 'string' ? src : URL.createObjectURL(src)
+  })
+}
+
+export const imageUrlToBlob = async (imageUrl: string, width = 192, height = 192, type?: string): Promise<Blob> => {
   try {
     const response = await axiosInstance.get(imageUrl, {
       responseType: 'blob',
