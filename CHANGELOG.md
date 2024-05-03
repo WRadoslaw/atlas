@@ -5,6 +5,165 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.0] - 2024-04-22
+
+### Added
+
+- CRT features
+- ChangeNOW integration
+- Powered by Joystream label
+
+### Fixed
+
+- Embedded player ending screen
+
+## [5.1.0] - 2024-04-18
+
+- New types for Luxor network release
+
+## [5.0.0] - 2024-03-13
+
+### Added
+
+- New types for Nara network release
+
+### Fixed
+
+- Logs during upload failure
+
+### Changed
+
+- Rolled back to previous version of Swiper due to loop issues
+
+## [4.15.2] - 2024-03-07
+
+### Added
+
+- Short video filtering
+- New search UI
+
+### Fixed
+
+- Overall performance improvements
+- Asset download improvements
+
+### Changed
+
+- Error message on login
+- Homepage feed is now semi curated
+
+## [4.15.1] - 2024-02-22
+
+### Added
+
+- Page for curators
+- Video preloading for homepage and video view
+
+### Fixed
+
+- Failing guest auth request in certain scenarios
+- Asset URL is now properly cached
+
+### Changed
+
+- Storage operator blacklisting logic on asset upload
+
+## [4.15.0] - 2024-02-09
+
+### Added
+
+- Request response time logging
+
+### Fixed
+
+- Atlas and Orion email validation difference
+- Lack of channel collaborator for subsequent Atlas channels of a single member that joined YPP
+
+### Changed
+
+- Changed feature arrival dates on pills
+- Channel collaborator permissions
+- Homepage language and category filtering
+
+## [4.14.6] - 2024-01-12
+
+### Fixed
+
+- Fixed user geolocation on viewer side
+- Fixed embedded view on mobile devices
+
+### Changed
+
+- Changed YPP opt out error message to include API message, for better UX.
+
+## [4.14.5] - 2023-12-29
+
+### Fixed
+
+- Fixed wallet problems when injecting ethereum addresses
+- Removed notification polling for anonymous users
+
+## [4.14.4] - 2023-12-08
+
+### Fixed
+
+- Fixed atlas meta server query
+- Fixed basic channel query performance
+
+## [4.14.3] - 2023-12-08
+
+### Changed
+
+- Changed Atlas TnC
+
+### Fixed
+
+- Fixed mismatch for notification types [2]
+
+## [4.14.2] - 2023-12-06
+
+### Fixed
+
+- Fixed mismatch for notification types
+- Fixed performance issues on studio page
+
+## [4.14.1] - 2023-11-27
+
+### Fixed
+
+- Fixed asset encoding check error
+
+## [4.14.0] - 2023-11-27
+
+### Added
+
+- Introduced client notifications in Atlas
+
+### Fixed
+
+- Optimised the queries performance
+- Fixed the missing event for funds withdrawal
+
+## [4.13.4] - 2023-11-21
+
+### Fixed
+
+- Fixed incorrect width of warning banner
+
+## [4.13.3] - 2023-11-21
+
+### Changed
+
+- split logs for asset uploads
+
+### Fixed
+
+- Restored featured filter for marketplace carousel
+- Fixed issue with funds withdrawals
+- Fixed tables markup for mobile devices
+- Fixed embedded videos previews
+- Optimised performance of the homepage query
+
 ## [4.13.2] - 2023-11-14
 
 ### Changed
