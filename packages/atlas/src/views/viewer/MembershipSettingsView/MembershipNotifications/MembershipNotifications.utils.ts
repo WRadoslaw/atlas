@@ -84,4 +84,33 @@ export const TABLE_STRUCTURE: NotificationSettingSections<Name> = [
       },
     ],
   },
+  {
+    title: 'Creator token',
+    rows: [
+      {
+        label: 'Channel that you follow issued a creator token',
+        name: 'crtIssued',
+      },
+      {
+        label: 'Planned revenue share is announced for relevant token',
+        name: 'crtRevenueSharePlanned',
+      },
+      {
+        label: 'Revenue share started for relevant token',
+        name: 'crtRevenueShareStarted',
+      },
+      {
+        label: 'Revenue share ended for relevant token',
+        name: 'crtRevenueShareEnded',
+      },
+      {
+        label: 'New market started for relevant token',
+        name: 'crtMarketStarted',
+      },
+      {
+        label: 'New sale started for relevant token',
+        name: 'crtSaleStarted',
+      },
+    ],
+  },
 ]

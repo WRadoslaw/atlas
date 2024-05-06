@@ -104,4 +104,21 @@ export const TABLE_STRUCTURE: NotificationSettingSections<Name> = [
       },
     ],
   },
+  {
+    title: 'Creator token',
+    rows: [
+      {
+        label: 'Someone minted new tokens on market',
+        name: 'crtMarketMint',
+      },
+      {
+        label: 'Someone sold tokens on market',
+        name: 'crtMarketBurn',
+      },
+      {
+        label: 'Someone purchased tokens on sale',
+        name: 'crtSaleMint',
+      },
+    ],
+  },
 ]
